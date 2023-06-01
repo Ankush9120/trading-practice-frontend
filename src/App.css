@@ -1,0 +1,1232 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Shantell+Sans:wght@300;400;500;600;700;800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Averia+Libre:wght@300;400;700&display=swap");
+
+* {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+:root {
+  --black1: #191919;
+  --black2: #22242a;
+  --black3: #323232;
+  --stockblue: #22344a;
+  --blue1: #05103a;
+  --blue2: #101c43;
+  --blue3: #2d3758;
+  --blue4: #246bcb;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+html {
+  background: rgb(30 30 30);
+}
+.intraMode {
+  background: var(--blue2);
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--black1);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.intraMode #root {
+  background: var(--blue1);
+}
+
+.bg-black3 {
+  background: var(--black3);
+}
+
+.myScrollBlurY::before {
+  content: "";
+  @apply h-10 w-full absolute bottom-0 z-[101];
+  background-image: linear-gradient(to bottom, transparent, var(--black1) 80%);
+}
+
+.intraMode .myScrollBlurY::before {
+  background-image: linear-gradient(to bottom, transparent, var(--blue1) 80%);
+}
+
+.myShadow {
+  box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+}
+
+/* Dashboard CSS  */
+
+.dashboard {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+}
+
+.searchStock {
+  @apply grid h-full w-full py-4 text-white gap-4 overflow-hidden;
+  max-width: 700px;
+  grid-template-rows: auto auto auto auto 1fr;
+  background: var(--black1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+input {
+  @apply placeholder:text-neutral-600 focus:placeholder:text-transparent !important;
+}
+
+.searchStock input {
+  border: 1px solid rgb(250 250 250/0.2);
+}
+
+.searchStock .closeBtn {
+  background: var(--black3);
+}
+
+.searchStock .stockName,
+.myStockName {
+  background: var(--stockblue);
+}
+
+.searchStock svg {
+  @apply stroke-neutral-600;
+}
+
+.searchStock input:focus + svg {
+  @apply stroke-white;
+}
+
+.options .ul1 {
+  @apply overflow-y-auto;
+  max-height: calc(50vh - 120px);
+}
+.options .ul1 input:checked ~ .ul2 {
+  display: grid;
+}
+.options .ul2 {
+  @apply gap-3;
+}
+.options .ul2 li {
+  @apply flex justify-around items-center;
+}
+
+.options .CE,
+.options .PE {
+  @apply border border-transparent p-0.5 px-4 rounded-md bg-neutral-700;
+}
+
+.options .CEselected .CE {
+  @apply border border-green-400;
+}
+
+.options .PEselected .PE {
+  @apply border border-red-600;
+}
+
+.options .stock,
+.myBorder {
+  @apply p-2.5 rounded-lg w-full text-center;
+  border-top: 0.1px solid rgb(250 250 250/0.1);
+  border-left: 0.1px solid rgb(250 250 250/0.1);
+}
+
+.options .addBtn {
+  @apply bg-sky-800 p-1 px-3 rounded-md;
+}
+.options .prices .selected {
+  @apply border border-neutral-300;
+}
+.options .prices li {
+  @apply bg-neutral-700 p-1 px-2.5 rounded-md;
+}
+.options .pricesPop {
+  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-[80%] bg-[var(--black1)] p-4 z-20 rounded-2xl grid gap-3;
+}
+.options .pricesPop .price {
+  @apply text-center bg-neutral-800 rounded-md p-2;
+}
+.options .pricesPopBackdrop {
+  @apply fixed top-0 left-0 h-full w-full z-[5];
+  background: rgb(0 0 0/0.6);
+}
+.options .pricesPop input {
+  @apply bg-transparent rounded-md placeholder:text-neutral-500 p-2 text-center w-52 focus:border focus:border-neutral-500;
+}
+.options .pricesPop ul {
+  @apply h-[190px] overflow-y-auto;
+}
+
+.searchStock .normalStocks ul {
+  @apply overflow-y-auto h-full absolute top-0 w-full;
+}
+
+.searchStock .normalStocks li {
+  @apply grid place-items-center gap-2 myShadow p-2 rounded-2xl h-min;
+  grid-template-columns: repeat(4, auto);
+  border-top: 0.1px solid rgb(250 250 250/0.1);
+  border-left: 0.1px solid rgb(250 250 250/0.1);
+}
+
+.intraMode .options .pricesPop {
+  background: var(--blue1);
+}
+.intraMode .searchStock .normalStocks li,
+.intraMode .options .stockName,
+.intraMode .options .CE,
+.intraMode .options .PE,
+.intraMode .options .price,
+.intraMode .options .pricesPop .price {
+  background: var(--blue2);
+}
+.intraMode .options .addBtn {
+  background: var(--blue3);
+}
+
+.sectionLine {
+  height: 1px;
+  width: 150%;
+  background: rgb(250 250 250/0.2);
+  position: relative;
+  left: -25%;
+}
+
+.addedStocksCover {
+  @apply relative h-full;
+}
+.addedStocks,
+.myScrollAdjust {
+  @apply absolute h-full w-full overflow-y-auto;
+}
+.addedStocks {
+  grid-template-columns: repeat(auto, 19px);
+}
+.addedStock {
+  box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+  z-index: 100;
+  background: var(--black1);
+  border-top: 0.1px solid rgb(250 250 250/0.1);
+  border-left: 0.1px solid rgb(250 250 250/0.1);
+}
+
+.addedStockInside {
+  @apply p-2 rounded-2xl;
+  grid-template-columns: min-content 1fr 1fr;
+}
+.swipe-to-delete {
+  @apply w-full h-min rounded-2xl overflow-visible !important;
+  box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+  /* background: var(--black1) !important; */
+}
+.swipe-to-delete .js-delete {
+  @apply bg-red-600 rounded-3xl overflow-hidden !important;
+}
+
+.js-transition-delete-right,
+.js-transition-delete-left,
+.js-transition-cancel {
+  transition-duration: 0.3s !important;
+  transition-timing-function: ease-in-out;
+}
+
+.addedStockInside .heart-rate {
+  margin: 0 auto;
+}
+
+.addedStock .companyLogo {
+  position: relative;
+  z-index: 1;
+}
+
+/* WatchList CSS  */
+
+.watchTab ul li {
+  background: var(--black3);
+}
+.watchTab ul {
+  @apply relative;
+  max-width: calc(100vw - 2rem - 48.42px - 0.8rem);
+}
+.watchTab ul .active {
+  @apply bg-neutral-600;
+}
+.createBtn {
+  @apply bg-neutral-600;
+}
+
+.watchTab ul::before {
+  @apply absolute h-full w-12 pr-12 right-0;
+  /* content: ""; */
+  background-image: linear-gradient(
+    to right,
+    rgb(250 250 250/0),
+    var(--black1) 70%
+  );
+}
+
+.stockItems {
+  color: rgb(250 250 250/0.4);
+}
+
+/* Graph Animation CSS  */
+
+.fadeIn {
+  position: absolute;
+  width: 0;
+  height: 40px;
+  background-color: var(--black1);
+  top: 0;
+  right: 0;
+  animation: moveIn 1s linear 1;
+}
+.normalLine .fadeIn {
+  top: -5px;
+}
+@keyframes moveIn {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+.intraGraph .fadeIn {
+  background: var(--blue2);
+  width: 100%;
+  height: 0;
+  top: unset;
+  bottom: 0;
+  animation: IntramoveIn 1s linear 1;
+}
+.intraGraph .highBar .fadeIn {
+  top: 0;
+  bottom: unset;
+}
+@keyframes IntramoveIn {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
+  }
+}
+
+.fade-out {
+  position: absolute;
+  width: 120%;
+  height: 40px;
+  top: 0;
+  left: -120%;
+  animation: moveOut 2.5s linear infinite;
+  background: var(--black1);
+  background: -moz-linear-gradient(
+    left,
+    var(--black1) 0%,
+    var(--black1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    var(--black1) 0%,
+    var(--black1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    var(--black1) 0%,
+    var(--black1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: -ms-linear-gradient(
+    left,
+    var(--black1) 0%,
+    var(--black1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background: linear-gradient(
+    to right,
+    var(--black1) 0%,
+    var(--black1) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@keyframes moveOut {
+  0% {
+    left: -120%;
+  }
+  30% {
+    left: -120%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+/* Blink Animation  */
+
+.addedStocks .ltp,
+.tradeBox .ltp {
+  @apply p-0.5 px-2 w-min mx-auto rounded;
+}
+
+.blink-green {
+  animation: positivebg 1.5s ease-in-out infinite;
+}
+
+@keyframes positivebg {
+  0%,
+  30% {
+    background: none;
+  }
+  31%,
+  59% {
+    @apply bg-green-500;
+  }
+  60%,
+  100% {
+    background: none;
+  }
+}
+
+.blink-red {
+  animation: negativebg 1.5s ease-in-out infinite;
+}
+
+@keyframes negativebg {
+  0%,
+  30% {
+    background: none;
+  }
+  31%,
+  59% {
+    @apply bg-red-600;
+  }
+  60%,
+  100% {
+    background: none;
+  }
+}
+
+.fade-in {
+  animation: fadeinbox 1s ease-in-out infinite;
+}
+
+.addedStock .stockName {
+  font-size: 14px;
+}
+
+.addedStock .stockData {
+  font-size: 14px;
+}
+
+.priceUpBlink {
+  animation: upBorderBlink 1s ease-in-out infinite;
+  border: 2px solid transparent;
+}
+
+@keyframes upBorderBlink {
+  0%,
+  40% {
+    border: 2px solid transparent;
+  }
+  41%,
+  49% {
+    border: 2px solid #4ade80;
+  }
+  55%,
+  100% {
+    border: 2px solid transparent;
+  }
+}
+
+.priceDownBlink {
+  animation: downBorderBlink 1s ease-in-out infinite;
+  border: 2px solid transparent;
+}
+
+@keyframes downBorderBlink {
+  0%,
+  40% {
+    border: 2px solid transparent;
+  }
+  41%,
+  49% {
+    border: 2px solid red;
+  }
+  55%,
+  100% {
+    border: 2px solid transparent;
+  }
+}
+
+/* Mobile Navigation  */
+.mNavigation {
+  @apply relative text-white rounded-xl  w-[95%] mx-auto mb-3;
+  /* background: var(--black3); */
+  background: rgb(45 45 45);
+  height: 60px;
+  z-index: 102;
+}
+
+.intraMode .mNavigation {
+  background: var(--blue3);
+}
+
+.mNavigation span {
+  opacity: 0;
+}
+
+.mNavigation svg {
+  @apply fill-slate-300;
+  height: 22px;
+}
+.mNavigation .active svg {
+  transform: translateY(-125%);
+  transition: transform 0.2s;
+  z-index: 10;
+  position: relative;
+}
+
+.mNavigation .active svg,
+.mNavigation .active svg path {
+  stroke: transparent;
+  fill: white;
+}
+
+.mNavigation .active span {
+  @apply font-medium;
+  opacity: 1;
+  transition: opacity 0.2s;
+  transform: translateY(80%);
+  font-size: 14px;
+}
+
+.mNavigation .indicator {
+  @apply bg-red-600  rounded-full absolute;
+  width: 65px;
+  height: 65px;
+  top: -50%;
+  border: 7px solid var(--black1);
+  transform: translateX(0);
+  transition: 0.2s;
+}
+
+.mNavigation .indicator::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 24px;
+  top: calc(50% - 2.6px);
+  left: calc(-50% - 2px);
+  border-radius: 0 22px 0 0;
+  box-shadow: 3px -7px 0 0 var(--black1);
+}
+.mNavigation .indicator::after {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 24px;
+  top: calc(50% - 2.6px);
+  right: calc(-50% - 2px);
+  border-radius: 22px 0 0 0;
+  box-shadow: -3px -7px 0 0 var(--black1);
+}
+
+.mNavigation .active:nth-child(5) ~ .indicator {
+  transform: translateX(38vw);
+}
+
+.mNavigation .active:nth-child(4) ~ .indicator {
+  transform: translateX(19.2vw);
+}
+
+.mNavigation .active:nth-child(1) ~ .indicator {
+  transform: translateX(-38vw);
+}
+.mNavigation .active:nth-child(2) ~ .indicator {
+  transform: translateX(-19.2vw);
+}
+
+@media screen and (min-width: 700px) {
+  .mNavigation .active:nth-child(5) ~ .indicator {
+    transform: translateX(408%);
+  }
+
+  .mNavigation .active:nth-child(4) ~ .indicator {
+    transform: translateX(205%);
+  }
+
+  .mNavigation .active:nth-child(2) ~ .indicator {
+    transform: translateX(-205%);
+  }
+  .mNavigation .active:nth-child(1) ~ .indicator {
+    transform: translateX(-410%);
+  }
+
+  .searchStock {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+/* History Box CSS  */
+.historyBox select {
+  @apply font-semibold h-full w-full text-center appearance-none;
+  background: var(--black1);
+}
+.historyBox .tag,
+.myTag {
+  @apply bg-red-600 w-min p-1 rounded-full m-auto;
+}
+
+.historyBox .sell-tag {
+  @apply bg-red-600;
+  box-shadow: 0 0 3px rgb(250 0 0/0.3), 0 0 6px rgb(250 0 0/0.6),
+    0 0 9px rgb(250 0 0/0.9);
+}
+.historyBox .buy-tag,
+.myTag {
+  @apply bg-green-500;
+  box-shadow: 0 0 3px rgb(34 197 94/0.3), 0 0 6px rgb(34 197 94/0.6),
+    0 0 9px rgb(34 197 94/0.9);
+}
+.historyBox {
+  @apply grid overflow-hidden;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+.historyTableCover {
+  @apply relative h-full w-full;
+}
+.historyBox .historyTable {
+  @apply absolute w-full h-full overflow-auto;
+}
+.historyBox table {
+  @apply border-spacing-y-3;
+  border-collapse: separate;
+  font-size: 12px;
+}
+.historyBox table thead,
+.historyBox table th,
+.historyBox table thead tr {
+  position: sticky;
+  top: 12px;
+  background: var(--black1);
+}
+.historyBox .historyTableCover thead::after {
+  content: "";
+  position: absolute;
+  top: -14px;
+  width: 100%;
+  height: 14px;
+  background: var(--black1);
+  z-index: 10;
+}
+.intraMode .historyBox .historyTableCover thead::after,
+.intraMode .historyBox table th {
+  background: var(--blue1);
+}
+.historyBox tbody tr {
+  @apply rounded-2xl;
+  box-shadow: 0 5px 6px rgb(0 0 0/0.25);
+  border-bottom: 0.75rem solid transparent;
+}
+
+.historyBox tbody tr td {
+  @apply py-3;
+}
+
+.market-tag,
+.sl-tag,
+.target-tag,
+.limit-tag,
+.manual-tag {
+  @apply bg-violet-700 px-1.5 rounded w-min m-auto;
+}
+.limit-tag {
+  @apply bg-pink-600;
+}
+.manual-tag {
+  @apply bg-indigo-700;
+}
+.target-tag {
+  @apply bg-blue-600;
+}
+.sl-tag {
+  @apply bg-yellow-600;
+}
+.sl-tag::before {
+  content: "StopLoss";
+}
+.target-tag::before {
+  content: "Target";
+}
+.market-tag::before {
+  content: "Market";
+}
+.limit-tag::before {
+  content: "Limit";
+}
+.manual-tag::before {
+  content: "Manual";
+}
+
+.order-tag tbody td:first-child {
+  @apply rounded-tl-sm;
+}
+
+.historyBox .stock-name,
+.historyBox .date {
+  @apply text-sky-400;
+}
+.historyBox tbody tr td:first-child {
+  @apply rounded-tl-2xl rounded-bl-2xl pl-4;
+}
+.historyBox tbody tr td:last-child {
+  @apply rounded-tr-2xl rounded-br-2xl pr-4;
+}
+.historyBox .intraSwitch {
+  @apply bottom-[8.5rem];
+}
+
+/* Orders Page  */
+
+.orderPage {
+  @apply grid grid-rows-[auto,1fr] pt-6 gap-3 !important;
+}
+.orderPage .overallData svg {
+  transform: rotate(135deg) translateY(150%);
+  fill: rgb(250 250 250/0.5);
+  height: 26px;
+}
+
+.orderPage .overallData {
+  position: relative;
+  /* top: 12px; */
+  border-top: 0.1px solid rgb(250 250 250/0.1);
+  border-left: 0.1px solid rgb(250 250 250/0.1);
+  z-index: 102;
+}
+.orderPage .chainBox {
+  position: absolute;
+  height: 0;
+  width: 100%;
+  top: 0;
+}
+
+.orderPage .chainBox .chain1 {
+  transform: rotate(135deg) translateX(-150%);
+}
+
+.overallData {
+  font-size: 14px;
+}
+
+.stock-name,
+.pnl {
+  font-size: 15px;
+}
+
+.historyBox .stock-name {
+  font-size: 14px;
+}
+
+.addedOrdersCover {
+  @apply h-full relative;
+}
+
+.addedOrders {
+  @apply flex flex-col gap-3 absolute h-full w-full top-0 overflow-auto pb-10;
+  font-size: 13px;
+}
+
+.addedOrder {
+  @apply relative flex flex-col gap-3 text-center p-2 py-3 rounded-2xl;
+  z-index: 100;
+  background: var(--black1);
+}
+
+.orderPage .text,
+.myText {
+  @apply text-neutral-400 text-xs;
+}
+
+.addedOrders .heart-rate {
+  margin: unset;
+}
+
+.addedOrders .heart-rate .loss polyline {
+  @apply stroke-red-600;
+}
+
+.addedOrders .heart-rate .loss {
+  transform: scale(1, -1);
+}
+
+.handleOrders {
+  @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-4 p-4 rounded-2xl text-center w-full justify-center my-4 z-[101];
+  font-size: 14px;
+}
+
+.handleOrders input {
+  @apply bg-transparent w-24 p-2 px-3 rounded-md focus:border focus:border-gray-400 text-center;
+  border: 1px solid rgb(250 250 250/0.2);
+  background: var(--black1);
+}
+.handleOrders button {
+  @apply bg-black3 py-2 px-3 rounded-md;
+}
+
+/* Blur Everything  */
+
+.blurEverything {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(6px);
+  z-index: 100;
+}
+
+/* handle on click orders  */
+
+.OrderinIndex {
+  @apply fixed w-[95%] max-w-[650px] left-1/2 -translate-x-1/2 !important;
+  z-index: 102 !important;
+  top: 30%;
+}
+
+.OrderinIndex + .blurEverything {
+  z-index: 101 !important;
+}
+
+/* Trade Box  */
+
+.tradeBox {
+  @apply text-center flex flex-col p-2 pb-0 gap-3 text-sm absolute w-[95%] max-w-[650px] justify-self-center top-1/2 -translate-y-[60%] rounded-3xl;
+  background: var(--black1);
+  z-index: 101;
+}
+.tradeBox input {
+  @apply bg-transparent p-2 px-3 rounded-md focus:border focus:border-gray-400 text-center w-full;
+
+  border: 0.1px solid rgb(250 250 250/0.3);
+}
+.tradeBox input::placeholder {
+  color: rgb(250 250 250/0.3);
+}
+.tradeBox .abButtons {
+  @apply h-[70px];
+}
+.tradeBox .abButtons button {
+  @apply relative text-xl font-semibold;
+}
+.tradeBox .abButtons svg path {
+  @apply fill-blue-600 text-blue-600;
+}
+.tradeBox .bidBtn svg path {
+  @apply fill-red-600 text-red-600;
+}
+.tradeBox .abButtons svg {
+  @apply relative -top-[0.8rem] h-24 rotate-45 !important;
+}
+.tradeBox .bidBtn {
+  @apply -rotate-180 !important;
+}
+.tradeBox .bidBtn span {
+  @apply rotate-180;
+}
+.tradeBox .abButtons button span {
+  @apply absolute top-1/2 -translate-y-1/2 -translate-x-1/2;
+  z-index: 1;
+}
+/* .tradeBox .askBtn::before , .tradeBox .bidBtn::before{
+  @apply bg-blue-600;
+  content: "";
+  height: 90%;
+  width: 28px;
+  position: absolute;
+  transform: rotate(45deg);
+  border-radius: 6px;
+  right: -20%
+}
+.tradeBox .bidBtn::before{
+  @apply bg-red-600;
+  right: unset;
+  left: -20%;
+} */
+
+/* .tradeActive .tradeBox .abButtons button svg {
+  @apply h-4 fill-white;
+} */
+
+.tradeBox select {
+  @apply p-2 w-full rounded-md text-center;
+  background: var(--black1);
+  border: 0.1px solid rgb(250 250 250/0.8);
+  appearance: unset;
+}
+
+/* .tradeActive {
+  @apply fixed w-[95%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] py-3 !important;
+  max-width: 650px;
+  z-index: 102;
+  transform: translateY(-40%);
+}
+
+.tradeActive + .blurEverything {
+  z-index: 101;
+} */
+
+/* Intra Switch  */
+
+.intraSwitch {
+  z-index: 100;
+  background: var(--black3);
+  border: 0.5px solid rgb(250 250 250/0.4);
+
+  animation: animateBorder 1s linear infinite;
+}
+
+@keyframes animateBorder {
+  50% {
+    border-left: 0.5px solid transparent;
+    border-bottom: 0.5px solid transparent;
+  }
+  51% {
+    border-right: 0.5px solid transparent;
+    border-top: 0.5px solid transparent;
+  }
+}
+
+/* Action CSS  */
+.actionBox {
+  @apply grid;
+  grid-template-rows: auto auto auto auto 1fr;
+}
+.actionBox .screenerCover section {
+  @apply absolute w-full h-full top-0 overflow-auto;
+}
+.addedAction {
+  grid-template-columns: min-content 1fr 1fr 1fr;
+}
+
+.highLowTabs {
+  @apply p-1 rounded-lg text-sm;
+  background: var(--black3);
+}
+.highLowTabs .tab {
+  @apply w-full text-center p-1.5 rounded-md relative;
+}
+.highLowTabs .text {
+  @apply relative z-10;
+}
+.highLowTabs .activeBg {
+  @apply bg-neutral-800 absolute h-full w-full top-0 left-0 rounded-md;
+  transform: translateX(0);
+  transition: transform 0.2s ease-in-out;
+}
+.lowTabActive .activeBg {
+  transform: translateX(100%);
+}
+
+.liveAction {
+  grid-template-columns: min-content 2fr 1fr 1fr;
+  white-space: nowrap;
+}
+.modifyHigh .ltp {
+  @apply text-green-400;
+}
+.modifyLow .ltp {
+  @apply text-red-500;
+}
+.liveDataBlink {
+  @apply bg-green-500 w-1.5 h-1.5 rounded-full ml-2.5;
+  box-shadow: 0 0 4px rgb(34 197 94/0.3), 0 0 8px rgb(34 197 94/0.6),
+    0 0 12px rgb(34 197 94/1);
+  animation: blinkLiveData 1s infinite;
+}
+
+@keyframes blinkLiveData {
+  50% {
+    box-shadow: none;
+  }
+}
+
+.modifyHigh {
+  animation: blinkShadowHigh 1.5s linear 1;
+}
+.modifyLow {
+  animation: blinkShadowRed 1.5s linear 1;
+}
+
+@keyframes blinkShadowHigh {
+  0%,
+  40% {
+    box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+  }
+  41%,
+  49% {
+    box-shadow: 0 2px 3px rgb(34 197 94/0.5), 0 4px 6px rgb(34 197 94);
+  }
+  55%,
+  100% {
+    box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+  }
+}
+
+@keyframes blinkShadowRed {
+  0%,
+  40% {
+    box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+  }
+  41%,
+  49% {
+    box-shadow: 0 2px 3px rgb(220 38 38/0.5), 0 4px 6px rgb(220 38 38);
+  }
+  55%,
+  100% {
+    box-shadow: 0 5px 10px rgb(0 0 0/0.2);
+  }
+}
+
+/* Intra Mode CSS  */
+.intraMode .addedStock {
+  background: var(--blue2);
+}
+.intraMode .addstockBtn {
+  background: var(--blue3);
+}
+.intraMode .mNavigation .indicator {
+  border: 7px solid var(--blue1);
+  background-color: var(--blue4);
+}
+.intraMode .mNavigation .indicator::before {
+  box-shadow: 3px -7px 0 0 var(--blue1);
+}
+.intraMode .mNavigation .indicator::after {
+  box-shadow: -3px -7px 0 0 var(--blue1);
+}
+.intraMode .fade-in {
+  background: var(--blue2);
+}
+
+.intraMode .watchTab ul li {
+  background: var(--blue3);
+}
+.intraMode .createBtn {
+  background: var(--blue4);
+}
+.intraMode .historyBox tbody tr {
+  background: var(--blue2);
+}
+.intraMode .actionBox .liveAction,
+.intraMode .addedAction {
+  background: var(--blue2);
+}
+.intraMode .highLowTabs {
+  background: var(--blue3);
+}
+.intraMode .highLowTabs .tab .activeBg {
+  background: var(--blue4);
+}
+.intraMode .orderPage .addedOrder {
+  background: var(--blue2);
+}
+.intraMode .tradeBox {
+  background: var(--blue2);
+}
+.intraMode .orderPage .overallData {
+  background: var(--blue2);
+}
+.intraMode .tradeBox select {
+  background: var(--blue2);
+}
+.intraMode .historyBox select {
+  background: var(--blue1);
+}
+.intraMode .intraSwitch {
+  background: var(--blue3);
+}
+.intraMode .searchStock {
+  background: var(--blue1);
+}
+.intraMode .closeBtn {
+  background: var(--blue3);
+}
+.intraMode .handleOrders input {
+  background: var(--blue2);
+}
+.intraMode .handleOrders button {
+  background: var(--blue4);
+}
+
+/* IntraDay Graph  */
+
+.intraGraphCover {
+  @apply h-7 relative grid place-items-center w-min mx-auto px-0.5 overflow-hidden;
+}
+.intraGraph {
+  @apply w-14 h-2.5 flex gap-0.5;
+  transform: translateY(5px);
+}
+
+.intraGraph .bar {
+  @apply bg-white relative;
+  min-width: 0.25rem;
+  border-radius: 1px;
+}
+.intraGraph .highBar {
+  @apply bg-green-500 -translate-y-full;
+}
+
+.intraGraph .lowBar {
+  @apply bg-red-600;
+  transform-origin: top;
+}
+.intraGraph .line {
+  @apply bg-white h-0.5;
+  min-width: 0.25rem;
+  border-radius: 1px;
+}
+
+/* Normal Graph */
+.graphCover {
+  @apply scale-75 h-7 w-min relative left-1 -top-1;
+}
+
+.graphCover .graph {
+  @apply flex whitespace-nowrap overflow-hidden;
+  width: 90px !important ;
+}
+.graphCover .graph > div {
+  min-width: 18px !important;
+}
+.graphCover .line {
+  @apply h-11 overflow-hidden relative;
+}
+.graphCover svg {
+  @apply h-8 -translate-x-[23px];
+}
+.graphCover .lowLine svg {
+  transform: scale(1, -1) translate(-22px, -8px);
+}
+.graphCover .lowLine svg polyline {
+  @apply stroke-red-600;
+}
+.graphCover .normalLine {
+  @apply w-[18px] h-[1px] bg-white relative top-[22px] -translate-y-[2.4px] -z-10;
+}
+
+.intraChanger {
+  @apply h-96 w-96 fixed bottom-0 right-0 border rounded-full z-[100] translate-x-full translate-y-full;
+  background: var(--black1);
+  /* backdrop-filter: blur(10px); */
+  animation: coverScreen 2s ease-in infinite;
+}
+
+@keyframes coverScreen {
+  100% {
+    transform: scale(3);
+  }
+}
+
+/* Notification */
+.Toastify__toast-container {
+  @apply top-[18px] w-min right-3 left-auto whitespace-nowrap rounded-md rounded-tl-md overflow-hidden h-12 flex justify-end items-center !important;
+}
+.Toastify__toast {
+  @apply min-h-fit rounded-md overflow-hidden m-0 !important;
+}
+
+.Toastify__close-button {
+  @apply opacity-0 !important;
+}
+
+.Toastify__toast--success {
+  @apply bg-green-600 !important;
+}
+
+/* Login Page CSS  */
+
+.loginContainer,
+.registerContainer {
+  font-family: "Averia Libre", cursive;
+  max-height: 650px;
+}
+.loginContainer header,
+.registerContainer header {
+  @apply font-semibold;
+  font-family: "Tilt Prism", cursive;
+}
+.loginContainer .btn,
+.registerContainer .btn {
+  border-top: 1px solid rgb(250 250 250/0.3);
+  border-left: 1px solid rgb(250 250 250/0.3);
+}
+
+/* Offline Page CSS  */
+
+.page_404 {
+  padding: 40px 0;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://i.ibb.co/47nLB5X/dribbble-1-unscreen.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+@media screen and (min-width: 750px) {
+  ::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(250 250 250/0.2);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(250 250 250/0.5);
+  }
+}
