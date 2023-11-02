@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const watchlistSlice = createSlice({
+const watchListDataSlice = createSlice({
   name: "watchlist",
   initialState: ["List 1"],
 
@@ -20,5 +20,5 @@ const watchlistSlice = createSlice({
 });
 
 export const { addWatchlist, removeWatchlist, renameWatchlist } =
-  watchlistSlice.actions;
-export default watchlistSlice.reducer;
+  watchListDataSlice.actions;
+export default watchListDataSlice.reducer;

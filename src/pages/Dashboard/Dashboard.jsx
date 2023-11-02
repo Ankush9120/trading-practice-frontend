@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import AddedStock from "../components/AddedStock";
-import SearchStock from "../components/SearchStock";
+import React, { useEffect, useState } from "react";
+import LoadingSvg from "../../assets/svg/loading.svg";
+import AddedStock from "../../components/AddedStock";
+import SearchStock from "../../components/SearchStock";
 import { toast } from "react-toastify";
 
 // hook to dispatch actions
@@ -10,16 +11,146 @@ import {
   addWatchlist,
   removeWatchlist,
   renameWatchlist,
-} from "../store/slices/watchlistSlice";
+} from "../../store/slices/watchListDataSlice";
 // hook to get data from store
 import { useSelector } from "react-redux";
-import TradeBox from "../components/TradeBox";
+import TradeBox from "../../components/TradeBox";
+import useDashboard from "./useDashboard";
 
 const Dashboard = () => {
+  const { fnsDashboard, dataDashboard } = useDashboard();
+
+  const stockData = [
+    {
+      stockName: "Reliance Industries",
+      ltp: 2120,
+      change: -15,
+      img: "./images/reliance.png",
+    },
+    {
+      stockName: "Tata Consultancy Services",
+      ltp: 3875,
+      change: 30,
+      img: "./images/tcs.png",
+    },
+    {
+      stockName: "Infosys Limited",
+      ltp: 1885,
+      change: 45,
+      img: "./images/infosys.png",
+    },
+    {
+      stockName: "HDFC Bank",
+      ltp: 1525,
+      change: -5,
+      img: "./images/hdfc.png",
+    },
+    {
+      stockName: "ICICI Bank",
+      ltp: 820,
+      change: 20,
+      img: "./images/icici.png",
+    },
+    {
+      stockName: "Wipro Limited",
+      ltp: 460,
+      change: 10,
+      img: "./images/wipro.png",
+    },
+    {
+      stockName: "ITC Limited",
+      ltp: 238,
+      change: 5,
+      img: "./images/itc.png",
+    },
+    {
+      stockName: "Hindustan Unilever",
+      ltp: 2380,
+      change: 25,
+      img: "./images/hul.png",
+    },
+    {
+      stockName: "Bajaj Finance",
+      ltp: 7000,
+      change: 80,
+      img: "./images/bajajfinance.png",
+    },
+    {
+      stockName: "Axis Bank",
+      ltp: 620,
+      change: -10,
+      img: "./images/axis.png",
+    },
+    {
+      stockName: "SBI (State Bank of India)",
+      ltp: 300,
+      change: 15,
+      img: "./images/sbi.png",
+    },
+    {
+      stockName: "Mahindra & Mahindra",
+      ltp: 850,
+      change: 40,
+      img: "./images/m&m.png",
+    },
+    {
+      stockName: "Maruti Suzuki",
+      ltp: 7500,
+      change: -30,
+      img: "./images/maruti.png",
+    },
+    {
+      stockName: "Tata Motors",
+      ltp: 320,
+      change: 10,
+      img: "./images/tatamotors.png",
+    },
+    {
+      stockName: "Larsen & Toubro",
+      ltp: 1650,
+      change: 55,
+      img: "./images/lt.png",
+    },
+    {
+      stockName: "HCL Technologies",
+      ltp: 1250,
+      change: -20,
+      img: "./images/hcl.png",
+    },
+    {
+      stockName: "Coal India",
+      ltp: 180,
+      change: 5,
+      img: "./images/coalindia.png",
+    },
+    {
+      stockName: "Sun Pharma",
+      ltp: 450,
+      change: 25,
+      img: "./images/sunpharma.png",
+    },
+    {
+      stockName: "Power Grid Corporation",
+      ltp: 200,
+      change: 10,
+      img: "./images/powergrid.png",
+    },
+    {
+      stockName: "NTPC Limited",
+      ltp: 120,
+      change: -5,
+      img: "./images/ntpc.png",
+    },
+  ];
+
   const [addStock, setAddStock] = useState(false);
   const [counter, setCounter] = useState(2);
 
   const [watchlistIndex, setWatchlistIndex] = useState(0);
+
+  useEffect(() => {
+    fnsDashboard.getAllStockData();
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -48,7 +179,7 @@ const Dashboard = () => {
   });
 
   // Toggle TradeBox
-  
+
   const isTradeBox = useSelector((state) => {
     return state.tradeBox;
   });
@@ -75,7 +206,7 @@ const Dashboard = () => {
             ))}
           </ul>
           <button
-            onClick={() => addNewWatchlist()}
+            onClick={addNewWatchlist}
             className="createBtn px-2 py-1 rounded-md flex-shrink-0 active:scale-95"
           >
             Add
@@ -133,13 +264,16 @@ const Dashboard = () => {
 
       {/* Added Stocks List  */}
       <div className="addedStocksCover myScrollBlurY">
-        <div className="addedStocks px-4 pb-8 flex flex-col gap-4">
-          <AddedStock value={"negative"} />
+        {/* <div className="h-full grid place-items-center">
+          {dataDashboard.stockListDataLoading && (
+            <img src={LoadingSvg} alt="" />
+          )}
+        </div> */}
 
-          <AddedStock value={"positive"} />
-          <AddedStock value={"positive"} />
-          <AddedStock value={"positive"} />
-          <AddedStock value={"positive"} />
+        <div className="addedStocks px-4 pb-8 flex flex-col gap-4">
+          {stockData.map((data, index) => {
+            return <AddedStock key={index} data={data} value={"negative"} />;
+          })}
         </div>
       </div>
 

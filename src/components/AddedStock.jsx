@@ -4,7 +4,7 @@ import IntraGraph from "./IntraGraph";
 import { useDispatch, useSelector } from "react-redux";
 import { tradeBoxToggle } from "../store/slices/tradeBoxSlice";
 
-const AddedStock = (props) => {
+const AddedStock = ({ data, value }) => {
   const dispatch = useDispatch();
 
   const toggleTradeBox = () => {
@@ -16,7 +16,7 @@ const AddedStock = (props) => {
   });
 
   return (
-    <div className={`addedStock relative rounded-2xl px-2 ${props.value}`}>
+    <div className={`addedStock relative rounded-2xl px-2 ${value}`}>
       <div
         onClick={toggleTradeBox}
         className="addedStockInside grid place-items-center"
@@ -29,20 +29,30 @@ const AddedStock = (props) => {
             />
           </div>
         </div>
-        <div className="grid gap-1">
-          <div className="stockName">Paytm Pvt Ltd.</div>
+        <div className="grid gap-1 place-items-center">
+          <div className="stockName">{data.stockName}</div>
 
           {isIntraMode ? <IntraGraph /> : <Graph />}
         </div>
 
         <div className="stockData text-center">
-          <div className="ltp blink-green">145.56</div>
+          <div className="ltp blink-green">{data.ltp}</div>
 
           <div className="flex items-center gap-1">
-            <div className="text-center text-green-400 relative right-1">
-              145.3
+            <div
+              className={`text-center ${
+                data.change >= 0 ? "text-green-400" : "text-red-500"
+              } text-green-400 relative right-1`}
+            >
+              {data.change}
             </div>
-            <div className="change text-green-400 text-center">( 14.5% )</div>
+            <div
+              className={`change ${
+                data.change >= 0 ? "text-green-400" : "text-red-500"
+              } text-center`}
+            >
+              ( {((data.change / data.ltp) * 100).toFixed(2)}% )
+            </div>
           </div>
         </div>
 
